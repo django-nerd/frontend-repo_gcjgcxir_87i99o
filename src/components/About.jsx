@@ -1,53 +1,39 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { PawPrint, ShieldCheck, Heart } from 'lucide-react';
 
-const About = () => {
+const Feature = ({ icon: Icon, title, children }) => (
+  <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-white backdrop-blur">
+    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/10">
+      <Icon className="h-6 w-6" />
+    </div>
+    <h3 className="text-xl font-semibold">{title}</h3>
+    <p className="mt-2 text-white/70">{children}</p>
+  </div>
+);
+
+export default function About() {
   return (
-    <section id="about" className="relative w-full bg-gradient-to-b from-white to-[#fbf7f2] py-20 text-neutral-800">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 md:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-          className="order-2 md:order-1"
-        >
-          <h2 className="font-manrope text-3xl font-semibold tracking-tight md:text-4xl">Raised with love, guided by ethics</h2>
-          <p className="mt-4 text-lg text-neutral-600">
-            We are a small, dedicated Shiba Inu breeder focused on health, temperament, and early socialization. Our
-            puppies grow in a calm, loving environment, cared for like family.
+    <section id="about" className="relative w-full bg-gradient-to-b from-black to-zinc-900 py-20">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">Our Commitment</h2>
+          <p className="mt-3 max-w-2xl text-white/70">
+            We are a boutique Shiba Inu breeder focused on health, temperament, and responsible placement. Our dogs are
+            family first, raised at home with early neuro stimulation and socialization.
           </p>
-          <div className="mt-6 flex items-center gap-6">
-            <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
-              <p className="text-2xl font-bold text-[#f15b2a]">10+ yrs</p>
-              <p className="text-sm text-neutral-500">breeding experience</p>
-            </div>
-            <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5">
-              <p className="text-2xl font-bold text-[#f15b2a]">Health</p>
-              <p className="text-sm text-neutral-500">tested parents</p>
-            </div>
-          </div>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="order-1 md:order-2"
-        >
-          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-neutral-200 shadow-lg">
-            <img
-              src="https://images.unsplash.com/photo-1525253136156-f2aa3f5dc2b4?q=80&w=1600&auto=format&fit=crop"
-              alt="Breeder with Shiba Inu"
-              className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-              loading="lazy"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-[#ffede3]/60 to-transparent" />
-          </div>
-        </motion.div>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <Feature icon={ShieldCheck} title="Health Tested">
+            OFA and genetic testing with transparent health records. Veterinary care and up‑to‑date vaccinations.
+          </Feature>
+          <Feature icon={Heart} title="Ethically Raised">
+            Puppies are raised in‑home using Puppy Culture protocols to promote confidence and sound temperament.
+          </Feature>
+          <Feature icon={PawPrint} title="Lifetime Support">
+            Guidance for nutrition, training, and care for the lifetime of your Shiba.
+          </Feature>
+        </div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

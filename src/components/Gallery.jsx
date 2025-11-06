@@ -1,43 +1,28 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
-const images = [
-  'https://images.unsplash.com/photo-1568572933382-74d440642117?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1600&auto=format&fit=crop',
+const photos = [
+  'https://images.unsplash.com/photo-1602848597370-44a0ecae0b87?q=80&w=1600&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1556228578-8ad0200c1f6b?q=80&w=1600&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=1600&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1525253013412-55c1a69a5738?q=80&w=1600&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1601758124511-cac6a51f3d91?q=80&w=1600&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1568572933382-74d440642117?q=80&w=1600&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?q=80&w=1600&auto=format&fit=crop'
 ];
 
-const Gallery = () => {
+export default function Gallery() {
   return (
-    <section id="gallery" className="relative w-full bg-[#fbf7f2] py-20">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="font-manrope text-3xl font-semibold tracking-tight md:text-4xl">Gallery</h2>
-          <a href="#contact" className="text-sm font-medium text-[#f15b2a] hover:opacity-80">Get notified on new litters →</a>
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
-          {images.map((src, i) => (
-            <motion.div
-              key={src}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className={`group relative overflow-hidden rounded-2xl bg-neutral-200 ${
-                i % 5 === 0 ? 'col-span-2 md:col-span-1 md:row-span-2 aspect-[3/4]' : 'aspect-[4/3]'
-              }`}
-            >
-              <img src={src} alt="Shiba" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" loading="lazy" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </motion.div>
+    <section className="w-full bg-black py-20">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+        <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl">Gallery</h2>
+        <p className="mb-10 max-w-2xl text-white/70">A glimpse into our happy, healthy Shibas and their daily adventures.</p>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:gap-5">
+          {photos.map((src, i) => (
+            <div key={i} className="overflow-hidden rounded-xl">
+              <img src={src} alt="Shiba gallery" className="h-36 w-full object-cover sm:h-48 md:h-56 lg:h-64" loading="lazy" />
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Gallery;
+}

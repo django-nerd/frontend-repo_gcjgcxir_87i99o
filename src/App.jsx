@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Hero from './components/Hero';
 import About from './components/About';
 import KennelFeatures from './components/KennelFeatures';
 import Gallery from './components/Gallery';
 
-// Simple error boundary so any runtime error (e.g., during hot updates) never blanks the whole page
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -14,17 +13,16 @@ class ErrorBoundary extends React.Component {
     return { hasError: true };
   }
   componentDidCatch(error, info) {
-    // eslint-disable-next-line no-console
+    // Non-blocking: could log to a service
     console.error('App crashed:', error, info);
   }
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-[#0b0b0b] text-white flex items-center justify-center p-6">
-          <div className="max-w-lg text-center">
-            <h1 className="font-manrope text-2xl font-semibold">Something went wrong</h1>
-            <p className="mt-2 text-white/80">Try reloading the page. If the issue persists, Spline may be blocked by your network; the site will still work without it.</p>
-            <button onClick={() => window.location.reload()} className="mt-6 inline-flex items-center justify-center rounded-full bg-white/10 px-5 py-2.5 font-medium hover:bg-white/20">Reload</button>
+        <div className="flex min-h-screen items-center justify-center bg-black p-6 text-center text-white">
+          <div>
+            <h1 className="text-2xl font-semibold">Something went wrong</h1>
+            <p className="mt-2 text-white/70">Please refresh the page. If the issue persists, we\'ll fix it shortly.</p>
           </div>
         </div>
       );
@@ -33,49 +31,29 @@ class ErrorBoundary extends React.Component {
   }
 }
 
-function App() {
+export default function App() {
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-white text-neutral-900">
-        {/* Minimal top bar */}
-        <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-white/60 border-b border-white/30">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-            <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded-full bg-[#f15b2a]" />
-              <span className="font-semibold tracking-tight">Shiba Atelier</span>
+      <main className="min-h-screen bg-black font-sans">
+        <Hero />
+        <About />
+        <KennelFeatures />
+        <Gallery />
+        <footer id="contact" className="border-t border-white/10 bg-zinc-950 py-10 text-white">
+          <div className="mx-auto max-w-6xl px-6 sm:px-8">
+            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
+              <div>
+                <h3 className="text-lg font-semibold">Get in touch</h3>
+                <p className="text-white/70">Email us at hello@shibaluxe.com to start the reservation process.</p>
+              </div>
+              <a href="#" className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 font-medium text-black hover:bg-white/90">
+                Join Waiting List
+              </a>
             </div>
-            <nav className="hidden gap-6 text-sm text-neutral-700 md:flex">
-              <a href="#about" className="hover:text-neutral-900">About</a>
-              <a href="#kennel" className="hover:text-neutral-900">The Kennel</a>
-              <a href="#gallery" className="hover:text-neutral-900">Gallery</a>
-              <a href="#contact" className="hover:text-neutral-900">Contact</a>
-            </nav>
-          </div>
-        </header>
-
-        <main className="space-y-0">
-          <div className="pt-14">{/* spacing for fixed header */}
-            <Hero />
-          </div>
-          <About />
-          <KennelFeatures />
-          <Gallery />
-        </main>
-
-        <footer id="contact" className="border-t border-neutral-200 bg-[#fbf7f2] py-10">
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
-            <p className="text-sm text-neutral-600">© {new Date().getFullYear()} Shiba Atelier. All rights reserved.</p>
-            <div className="flex items-center gap-4 text-sm text-neutral-600">
-              <a href="mailto:hello@shibalove.kennel" className="hover:text-neutral-900">hello@shibalove.kennel</a>
-              <span>•</span>
-              <a href="#" aria-label="Instagram" className="hover:text-neutral-900">Instagram</a>
-              <a href="#" aria-label="Facebook" className="hover:text-neutral-900">Facebook</a>
-            </div>
+            <p className="mt-8 text-center text-sm text-white/50">© {new Date().getFullYear()} Shiba Luxe Kennels. All rights reserved.</p>
           </div>
         </footer>
-      </div>
+      </main>
     </ErrorBoundary>
   );
 }
-
-export default App;
