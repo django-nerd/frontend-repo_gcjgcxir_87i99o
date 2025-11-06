@@ -1,28 +1,52 @@
-import { useState } from 'react'
+import React from 'react';
+import Hero from './components/Hero';
+import About from './components/About';
+import KennelFeatures from './components/KennelFeatures';
+import Gallery from './components/Gallery';
+import BoardingTestimonialsCTA from './components/BoardingTestimonialsCTA';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-white text-neutral-900">
+      {/* Minimal top bar */}
+      <header className="fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-white/60 border-b border-white/30">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+          <div className="flex items-center gap-2">
+            <div className="h-6 w-6 rounded-full bg-[#f15b2a]" />
+            <span className="font-semibold tracking-tight">Shiba Atelier</span>
+          </div>
+          <nav className="hidden gap-6 text-sm text-neutral-700 md:flex">
+            <a href="#about" className="hover:text-neutral-900">About</a>
+            <a href="#kennel" className="hover:text-neutral-900">The Kennel</a>
+            <a href="#gallery" className="hover:text-neutral-900">Gallery</a>
+            <a href="#contact" className="hover:text-neutral-900">Contact</a>
+          </nav>
         </div>
-      </div>
+      </header>
+
+      <main className="space-y-0">
+        <div className="pt-14">{/* spacing for fixed header */}
+          <Hero />
+        </div>
+        <About />
+        <KennelFeatures />
+        <Gallery />
+        <BoardingTestimonialsCTA />
+      </main>
+
+      <footer className="border-t border-neutral-200 bg-[#fbf7f2] py-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
+          <p className="text-sm text-neutral-600">© {new Date().getFullYear()} Shiba Atelier. All rights reserved.</p>
+          <div className="flex items-center gap-4 text-sm text-neutral-600">
+            <a href="mailto:hello@shibalove.kennel" className="hover:text-neutral-900">hello@shibalove.kennel</a>
+            <span>•</span>
+            <a href="#" aria-label="Instagram" className="hover:text-neutral-900">Instagram</a>
+            <a href="#" aria-label="Facebook" className="hover:text-neutral-900">Facebook</a>
+          </div>
+        </div>
+      </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
