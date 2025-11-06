@@ -3,7 +3,6 @@ import Hero from './components/Hero';
 import About from './components/About';
 import KennelFeatures from './components/KennelFeatures';
 import Gallery from './components/Gallery';
-import BoardingTestimonialsCTA from './components/BoardingTestimonialsCTA';
 
 function App() {
   return (
@@ -31,7 +30,6 @@ function App() {
         <About />
         <KennelFeatures />
         <Gallery />
-        <BoardingTestimonialsCTA />
       </main>
 
       <footer className="border-t border-neutral-200 bg-[#fbf7f2] py-10">
